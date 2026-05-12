@@ -1,23 +1,792 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+   <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "그랑 콜레오스 유지비 & 자동차 리스/장기렌트 비교 플랫폼",
+      "url": "https://www.example.com",
+      "description": "르노 QM6 (그랑 콜레오스) 차량의 상세 유지비, 자동차 리스, 장기렌트카 옵션별 비용 비교 및 2026년 트렌드 정보를 제공하는 종합 비교 플랫폼입니다. 최저가 견적부터 현명한 선택까지, 모든 정보를 한눈에 확인하세요.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://www.example.com/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      },
+      "hasPart": [
+        {
+          "@type": "Service",
+          "name": "QM6 유지비 계산기",
+          "description": "QM6 가솔린, LPG, 디젤 모델의 연간 예상 유지비(세금, 보험료, 유류비 등)를 계산해 보세요.",
+          "serviceType": "MaintenanceCostCalculator",
+          "provider": {
+            "@type": "Organization",
+            "name": "그랑 콜레오스 유지비 & 자동차 리스/장기렌트 비교 플랫폼"
+          }
+        },
+        {
+          "@type": "Service",
+          "name": "QM6 자동차 리스 비교",
+          "description": "다양한 금융사의 QM6 자동차 리스 상품을 비교하고 맞춤 견적을 받아보세요.",
+          "serviceType": "CarLeaseComparison",
+          "provider": {
+            "@type": "Organization",
+            "name": "그랑 콜레오스 유지비 & 자동차 리스/장기렌트 비교 플랫폼"
+          }
+        },
+        {
+          "@type": "Service",
+          "name": "QM6 장기렌트카 비교",
+          "description": "QM6 장기렌트카 최저가 견적과 즉시 출고 가능한 상품 정보를 비교해 드립니다.",
+          "serviceType": "LongTermRentalComparison",
+          "provider": {
+            "@type": "Organization",
+            "name": "그랑 콜레오스 유지비 & 자동차 리스/장기렌트 비교 플랫폼"
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Basic CSS Style for Readability and Modern Look -->
+    <style>
+        :root {
+            --primary-color: #50b9a6; /* Soft Teal */
+            --secondary-color: #f78a5f; /* Warm Coral */
+            --tertiary-color: #f5f1e3; /* Light Beige */
+            --text-color: #333333; /* Dark Charcoal */
+            --light-text-color: #666666;
+            --border-color: #dddddd;
+            --header-bg: #e8f7f1; /* Lighter Teal for Header */
+            --accent-color: #f5a623; /* Muted Orange for emphasis */
+        }
+        body { font-family: 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', sans-serif; line-height: 1.7; color: var(--text-color); margin: 0; padding: 0; background-color: #ffffff; }
+        header { background-color: var(--header-bg); padding: 40px 5%; border-bottom: 1px solid var(--border-color); text-align: center; }
+        h1 { font-size: 2.8em; color: var(--primary-color); margin: 0; line-height: 1.2; font-weight: bold; }
+        h1 small { display: block; font-size: 0.55em; color: var(--secondary-color); font-weight: normal; margin-top: 8px; }
+        header p { font-size: 1.15em; color: var(--light-text-color); margin-top: 15px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        nav { margin-top: 30px; }
+        nav ul { list-style: none; padding: 0; margin: 0; display: flex; justify-content: center; flex-wrap: wrap; }
+        nav li { margin: 0 15px; }
+        nav a { text-decoration: none; color: var(--text-color); font-weight: bold; padding: 12px 20px; border-radius: 8px; transition: background-color 0.3s ease, color 0.3s ease; }
+        nav a:hover { background-color: var(--tertiary-color); color: var(--secondary-color); }
+        main { padding: 40px 5%; max-width: 1200px; margin: 0 auto; }
+        section { padding: 50px 0; border-bottom: 1px solid #eee; }
+        section:last-child { border-bottom: none; }
+        h2 { font-size: 2.2em; color: var(--primary-color); margin-bottom: 25px; border-left: 5px solid var(--secondary-color); padding-left: 15px; line-height: 1.3; }
+        h3 { font-size: 1.7em; color: var(--secondary-color); margin-top: 40px; margin-bottom: 20px; font-weight: bold; }
+        h4 { font-size: 1.4em; color: var(--accent-color); margin-top: 30px; margin-bottom: 15px; font-weight: bold; }
+        p, ul, ol, table { margin-bottom: 20px; line-height: 1.8; font-size: 1.08em; color: #444; }
+        ul, ol { padding-left: 25px; }
+        li { margin-bottom: 10px; }
+        .form-container { background-color: var(--tertiary-color); padding: 40px; border-radius: 12px; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); }
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; font-weight: bold; margin-bottom: 10px; font-size: 1.15em; color: var(--text-color); }
+        .form-group input[type="text"], .form-group input[type="email"], .form-group input[type="tel"], .form-group select, .form-group input[type="date"], .form-group textarea, .form-group input[type="number"] { width: calc(100% - 24px); padding: 15px; border: 1px solid #ccc; border-radius: 8px; font-size: 1em; box-sizing: border-box; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+        .form-group input[type="text"]:focus, .form-group input[type="email"]:focus, .form-group input[type="tel"]:focus, .form-group select:focus, .form-group input[type="date"]:focus, .form-group textarea:focus, .form-group input[type="number"]:focus { border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(80, 185, 166, 0.2); outline: none; }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        .submit-btn { background-color: var(--secondary-color); color: white; border: none; padding: 18px 35px; border-radius: 10px; cursor: pointer; font-size: 1.25em; font-weight: bold; transition: background-color 0.3s ease, transform 0.1s ease; display: block; width: 100%; text-align: center; margin-top: 25px; box-shadow: 0 4px 10px rgba(247, 138, 95, 0.3); }
+        .submit-btn:hover { background-color: #e67a4c; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(247, 138, 95, 0.4); }
+        .info-box { background-color: #e8f7f1; padding: 25px; border-radius: 10px; margin-top: 25px; border-left: 6px solid var(--primary-color); }
+        .info-box strong { color: var(--primary-color); font-weight: bold; }
+        .keyword-tags { margin-top: 30px; text-align: center; }
+        .keyword-tags a { display: inline-block; background-color: var(--tertiary-color); color: var(--text-color); padding: 10px 18px; border-radius: 25px; text-decoration: none; font-size: 0.95em; margin: 6px 8px; transition: background-color 0.3s ease, color 0.3s ease; border: 1px solid #e0e0e0; }
+        .keyword-tags a:hover { background-color: var(--secondary-color); color: white; }
+        table { width: 100%; border-collapse: collapse; margin-top: 25px; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); }
+        th, td { border: 1px solid var(--border-color); padding: 15px; text-align: center; font-size: 1em; }
+        th { background-color: var(--header-bg); font-weight: bold; color: var(--primary-color); font-size: 1.05em; }
+        table strong { color: var(--secondary-color); font-weight: bold; }
+        .faq-dl dt { cursor: pointer; background-color: var(--tertiary-color); border: 1px solid var(--border-color); padding: 18px; margin-top: 12px; border-radius: 10px; position: relative; font-weight: bold; color: var(--text-color); transition: background-color 0.3s ease; font-size: 1.1em; }
+        .faq-dl dt::before { content: "Q."; margin-right: 12px; font-weight: bold; color: var(--secondary-color); }
+        .faq-dl dt:hover { background-color: #e8f1e3; } /* Slightly darker tertiary */
+        .faq-dl dd { display: none; padding: 20px; background-color: #ffffff; border: 1px solid var(--border-color); border-top: none; margin: 0; border-radius: 0 0 10px 10px; color: var(--light-text-color); line-height: 1.8; font-size: 1.05em; }
+        .faq-dl dt.active + dd { display: block; }
+        .faq-dl dt::after { content: '+'; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); transition: transform 0.3s ease; font-size: 1.2em; color: var(--accent-color); }
+        .faq-dl dt.active::after { content: '-'; color: var(--secondary-color); }
+        .related-links { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 12px; margin-top: 30px; }
+        .related-links a { display: inline-block; background-color: var(--tertiary-color); color: var(--text-color); padding: 12px 20px; border-radius: 10px; text-decoration: none; font-weight: bold; transition: background-color 0.3s ease; border: 1px solid var(--border-color); font-size: 1.05em; }
+        .related-links a:hover { background-color: #e8f1e3; }
+        .long-content { margin-top: 25px; }
+        .figure-caption { text-align: center; font-style: italic; color: var(--light-text-color); margin-bottom: 25px; font-size: 0.95em; }
+        
+        /* Graph/Chart Placeholder */
+        .chart-placeholder { 
+            background-color: var(--tertiary-color); 
+            border: 1px dashed var(--border-color); 
+            border-radius: 10px; 
+            padding: 40px; 
+            margin: 30px auto; 
+            text-align: center; 
+            color: var(--light-text-color); 
+            font-style: italic; 
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.8em; }
+            h3 { font-size: 1.5em; }
+            nav ul { flex-direction: column; }
+            nav li { margin: 8px 0; }
+            nav a { width: calc(100% - 40px); text-align: center; }
+            .form-group input[type="text"], .form-group input[type="email"], .form-group input[type="tel"], .form-group select, .form-group input[type="date"], .form-group textarea, .form-group input[type="number"] { width: 100%; }
+            main { padding: 30px 5%; }
+            section { padding: 40px 0; }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>대한민국 No.1 <strong>그랑 콜레오스</strong> & QM6<br>
+            <small>유지비, 자동차 리스 & 장기렌트카 비교 플랫폼</small>
+        </h1>
+        <p><strong>2026년</strong> 최신 정보 기반! <strong>QM6 (그랑 콜레오스)</strong>의 합리적인 <strong>유지비</strong> 계산부터 <strong>자동차리스</strong>, <strong>장기렌트카</strong>까지. 다양한 옵션의 <strong>견적</strong>을 한 번에 비교하여 최적의 선택을 도와드립니다.</p>
+        <nav aria-label="주요 메뉴">
+            <ul>
+                <li><a href="#qm6-유지비">QM6 유지비 계산</a></li>
+                <li><a href="#자동차리스">자동차 리스 비교</a></li>
+                <li><a href="#장기렌트카">장기렌트카 비교</a></li>
+                <li><a href="#비교분석">리스 vs 렌트 vs 구매</a></li>
+                <li><a href="#2026트렌드">2026 트렌드</a></li>
+                <li><a href="#문의하기">문의하기</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        
+        <section id="qm6-유지비">
+            <h2>🚗 <strong>그랑 콜레오스 (QM6)</strong>의 현실적인 <strong>유지비</strong> 분석</h2>
+            <p><strong>르노 QM6</strong> (해외명: <strong>그랑 콜레오스</strong>)는 뛰어난 가성비와 안정적인 성능으로 꾸준한 인기를 얻고 있는 중형 SUV입니다. 특히 <strong>LPG 모델</strong>은 합리적인 <strong>연료비</strong> 덕분에 많은 분들이 선호하시는데요. 지금부터 <strong>QM6</strong>의 연간 <strong>자동차세</strong>, <strong>보험료</strong>, <strong>유류비</strong> 등 총 <strong>유지비</strong>를 상세하게 분석해 드리겠습니다. <strong>2026년</strong> 기준 예상되는 <strong>비용</strong>까지 꼼꼼히 확인해 보세요.</p>
+
+            <div class="form-container">
+                <h3><span aria-hidden="true">⛽</span> <strong>QM6 유지비</strong> 실시간 계산기</h3>
+                <p>아래 정보를 입력하시면, 예상되는 <strong>QM6</strong> 차량의 연간 <strong>유지비</strong>를 산출해 드립니다. (<strong>2026년</strong> 기준 예상치)</p>
+                
+                <form action="/calculate-maintenance" method="POST" id="maintenance-form">
+                    <div class="form-group">
+                        <label for="car-model-option">1. <strong>QM6</strong> 모델 선택</label>
+                        <select id="car-model-option" name="car-model-option" required>
+                            <option value="">모델을 선택하세요</option>
+                            <option value="QM6 2.0 GDe (가솔린)">QM6 2.0 GDe (가솔린)</option>
+                            <option value="QM6 2.0 LPe (LPG)">QM6 2.0 LPe (LPG)</option>
+                            <option value="QM6 2.0 LPe Quest (LPG 밴)">QM6 2.0 LPe Quest (LPG 밴)</option>
+                            <option value="QM6 2.0 dCi (디젤 - 단종)">QM6 2.0 dCi (디젤 - 단종)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="annual-mileage">2. 연간 예상 주행거리 (km)</label>
+                        <input type="number" id="annual-mileage" name="annual-mileage" placeholder="예: 15,000" min="5000" max="50000" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="average-fuel-price">3. 예상 평균 유가 (리터당 가격)</label>
+                        <input type="number" id="average-fuel-price" name="average-fuel-price" placeholder="예: 가솔린 1,650원, LPG 980원" step="10" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="car-insurance-cost">4. 연간 자동차 보험료 예상 금액</label>
+                        <input type="number" id="car-insurance-cost" name="car-insurance-cost" placeholder="예: 700,000원" step="10000" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="vehicle-tax">5. 연간 자동차세 (참고용)</label>
+                        <p style="font-size: 0.9em; color: var(--light-text-color); margin-top: -10px;">(가솔린 약 51.9만원, LPG 약 17.9만원, 퀘스트 약 2.85만원. <strong>2026년</strong>에도 유사하게 적용될 것으로 예상됩니다.)</p>
+                        <input type="number" id="vehicle-tax" name="vehicle-tax" placeholder="예: 519000" step="1000" required>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" aria-label="QM6 유지비 계산하기"><strong>QM6 유지비</strong> 상세 계산하기</button>
+                </form>
+            </div>
+            
+            <h3>📊 **QM6** 연간 예상 유지비 상세 분석 (2026년 기준)</h3>
+            <p><strong>QM6</strong>는 모델별, 주행 거리에 따라 연간 <strong>유지비</strong>가 크게 달라집니다. 특히 <strong>LPG 모델</strong>은 <strong>연료비</strong> 절감 효과가 두드러지며, '<strong>QM6 퀘스트</strong>' 모델의 경우 화물차로 분류되어 <strong>자동차세</strong>가 매우 저렴한 것이 특징입니다. 아래 표는 일반적인 조건(연간 15,000km 주행, 30대 운전자, 5년 무사고 기준)을 바탕으로 한 <strong>예상 금액</strong>입니다.</p>
+
+            <div class="chart-placeholder">
+                그래프 또는 표 삽입 영역: QM6 모델별 연간 유지비 비교 (가솔린 vs LPG vs 퀘스트)
+                <br>
+                (예: 유류비, 자동차세, 보험료, 소모품 교체비 등 항목별 예상 금액 표시)
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>항목</th>
+                        <th>QM6 2.0 GDe (가솔린)</th>
+                        <th>QM6 2.0 LPe (LPG)</th>
+                        <th>QM6 2.0 LPe Quest (LPG 밴)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>연간 유류비</strong><br>(15,000km 주행, 예상 유가 기준)</td>
+                        <td>약 250만원 ~ 300만원 [1]</td>
+                        <td>약 180만원 ~ 220만원 [1, 19]</td>
+                        <td>약 180만원 ~ 220만원 [1, 19]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>연간 자동차세</strong><br>(2026년 예상)</td>
+                        <td>약 51.9만원 [2, 4]</td>
+                        <td>약 17.9만원 [2]</td>
+                        <td>약 2.85만원 [24, 25]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>연간 보험료</strong><br>(30대, 5년 무사고 기준)</td>
+                        <td>약 60만원 ~ 80만원 [46]</td>
+                        <td>약 55만원 ~ 75만원 [46]</td>
+                        <td>약 70만원 ~ 90만원 (차량 가액, 연령 등 고려) [28]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>연간 소모품 교체 비용</strong><br>(엔진오일, 필터 등)</td>
+                        <td>약 30만원 ~ 50만원</td>
+                        <td>약 30만원 ~ 50만원</td>
+                        <td>약 30만원 ~ 50만원</td>
+                    </tr>
+                    <tr>
+                        <td><strong>총 연간 예상 유지비</strong><br>(참고용)</td>
+                        <td><strong>약 370만원 ~ 480만원</strong></td>
+                        <td><strong>약 270만원 ~ 350만원</strong></td>
+                        <td><strong>약 100만원 ~ 150만원</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p><strong>QM6 LPG 모델</strong>은 <strong>가솔린 모델</strong> 대비 <strong>연료비</strong>와 <strong>자동차세</strong>에서 상당한 <strong>비용</strong> 절감 효과를 제공합니다. <strong>QM6 퀘스트</strong> 모델은 화물차로 분류되어 <strong>자동차세</strong>가 매우 저렴하므로, 사업용이나 레저용으로 활용한다면 <strong>유지비</strong> 측면에서 매우 유리합니다 [24, 25]. <strong>내돈내산 후기</strong>를 통해 실제 오너들의 <strong>유지비</strong> 만족도 역시 높은 편입니다 [1]. <strong>2026년</strong>에도 이러한 <strong>비용</strong> 구조는 크게 변하지 않을 것으로 예상됩니다.</p>
+
+            <h4>📈 **QM6**의 <strong>유지비</strong> 절약을 위한 팁</h4>
+            <ul>
+                <li><strong>LPG 모델</strong> 선택: <strong>가솔린</strong> 대비 <strong>연료비</strong> 부담을 크게 줄일 수 있습니다.</li>
+                <li><strong>QM6 퀘스트</strong> 모델 고려: <strong>자동차세</strong> 및 취등록세 절감 효과가 매우 큽니다.</li>
+                <li><strong>주행 습관</strong> 개선: 급가속, 급제동을 줄여 <strong>연비</strong> 효율을 높입니다.</li>
+                <li><strong>정기적인 점검</strong> 및 소모품 교체: 잔고장을 예방하여 큰 수리 비용을 막습니다. (<strong>QM6</strong>는 잔고장이 적은 편으로 알려져 있습니다 [1].)</li>
+                <li><strong>보험료 비교</strong>: 다양한 보험사의 <strong>QM6 보험료</strong>를 비교하여 가장 저렴한 곳을 찾습니다. (<strong>2026년</strong>에도 <strong>다이렉트 보험</strong>의 경쟁이 치열할 것입니다.)</li>
+            </ul>
+        </section>
+        
+        <hr>
+
+        <section id="자동차리스">
+            <h2>💰 <strong>QM6 (그랑 콜레오스)</strong> <strong>자동차 리스</strong>: 똑똑하게 차량 소유하기</h2>
+            <p><strong>자동차 리스</strong>는 차량을 직접 구매하는 대신, 일정 기간 동안 금융사로부터 빌려 사용하는 금융 상품입니다. 초기 <strong>비용</strong> 부담을 줄이고, 정기적인 <strong>월리스료</strong> 납부로 신차를 이용할 수 있으며, 특히 개인사업자나 법인의 경우 <strong>세금</strong> 처리 혜택을 통해 절세 효과를 극대화할 수 있다는 <strong>장점</strong>이 있습니다. <strong>QM6</strong> <strong>자동차 리스</strong>에 대한 모든 것을 알아보겠습니다.</p>
+
+            <h3><strong>자동차 리스</strong> vs. <strong>할부</strong> 구매: 무엇이 다를까요?</h3>
+            <p><strong>자동차 리스</strong>는 차량을 '빌려 타는' 개념으로, 명목상의 소유주는 금융사이며 계약자는 차량을 사용하는 권리를 얻습니다. 반면 <strong>할부</strong> 구매는 차량을 '사는' 개념으로, 차량 소유권이 구매자에게 있습니다. <strong>2026년</strong> 기준으로 <strong>개인사업자</strong> 및 <strong>법인</strong>에게는 <strong>자동차 리스</strong>의 <strong>비용</strong> 처리(세금 절감) <strong>혜택</strong>이 큰 매력으로 작용합니다.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th><strong>자동차 리스</strong></th>
+                        <th><strong>할부</strong> 구매</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>차량 소유권</strong></td>
+                        <td>리스사 (계약 기간 만료 후 인수 또는 반납/재리스 선택)</td>
+                        <td>구매자</td>
+                    </tr>
+                    <tr>
+                        <td><strong>초기 비용</strong><br>(취등록세, 등록세 등)</td>
+                        <td>리스료에 포함, 초기 부담 적음 [31, 36]</td>
+                        <td>초기에 직접 부담 (차량가의 약 7% 수준) [14]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>월 납입금</strong></td>
+                        <td>차량가에서 잔존가치 제외 후 산정, 상대적으로 낮을 수 있음 [31, 36]</td>
+                        <td>원금+이자 상환, 리스 대비 높을 수 있음 [36]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>세금 혜택</strong><br>(사업자 기준)</td>
+                        <td><strong>비용 처리</strong> 가능, 절세 효과 [31, 34, 36]</td>
+                        <td>이자 비용만 세금 공제 가능</td>
+                    </tr>
+                    <tr>
+                        <td><strong>차량 관리</strong></td>
+                        <td>리스사를 통해 관리 또는 직접 관리</td>
+                        <td>직접 관리 (보험, 정비 등)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>자산/부채 인식</strong></td>
+                        <td>회계 기준에 따라 자산/부채로 인식될 수 있음 (IFRS 16)</td>
+                        <td>자산으로 인식</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>🔑 <strong>QM6 (그랑 콜레오스)</strong> <strong>자동차 리스</strong>, 이렇게 준비하세요</h3>
+            <p><strong>QM6</strong> <strong>자동차 리스</strong>를 고려하신다면, 다음 사항들을 꼼꼼히 확인하여 <strong>최저가</strong> <strong>견적</strong>과 최적의 계약 조건을 찾으시길 바랍니다.</p>
+            
+            <div class="form-container">
+                <h4><strong>QM6 리스</strong> 상세 견적 요청</h4>
+                <p><strong>2026년</strong> 기준, <strong>QM6</strong> 모델별 <strong>리스</strong> <strong>견적</strong>을 비교해 드립니다. 원하는 조건을 선택하여 정확한 <strong>비용</strong>을 알아보세요.</p>
+                <form action="/request-lease-quote" method="POST" id="lease-quote-form">
+                    <div class="form-group">
+                        <label for="lease-model">1. <strong>QM6</strong> 모델 선택</label>
+                        <select id="lease-model" name="lease-model" required>
+                            <option value="">모델을 선택하세요</option>
+                            <option value="QM6 2.0 GDe RE">QM6 2.0 GDe RE</option>
+                            <option value="QM6 2.0 LPe LE">QM6 2.0 LPe LE</option>
+                            <option value="QM6 2.0 LPe RE">QM6 2.0 LPe RE</option>
+                            <option value="QM6 2.0 GDe Premiere">QM6 2.0 GDe Premiere</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lease-term">2. 계약 기간 (개월)</label>
+                        <select id="lease-term" name="lease-term" required>
+                            <option value="24">24개월</option>
+                            <option value="36">36개월</option>
+                            <option value="48">48개월</option>
+                            <option value="60" selected>60개월</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="annual-mileage-lease">3. 연간 주행거리 (km)</label>
+                        <select id="annual-mileage-lease" name="annual-mileage-lease" required>
+                            <option value="10000">10,000 km</option>
+                            <option value="20000" selected>20,000 km</option>
+                            <option value="30000">30,000 km</option>
+                            <option value="무제한">무제한 (옵션 문의)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="down-payment-lease">4. 선납금 비율 (%)</label>
+                        <select id="down-payment-lease" name="down-payment-lease" required>
+                            <option value="0">0% (무보증)</option>
+                            <option value="10">10%</option>
+                            <option value="20">20%</option>
+                            <option value="30" selected>30%</option>
+                            <option value="40">40%</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="residual-value-option">5. 잔존가치 설정</label>
+                        <select id="residual-value-option" name="residual-value-option" required>
+                            <option value="standard">표준 (금융사 기본 설정)</option>
+                            <option value="high">높은 잔존가치 (월리스료 절감, 인수 시 유리)</option>
+                            <option value="low">낮은 잔존가치 (월리스료 증가, 반납/재리스 시 유리)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lease-customer-type">6. 고객 유형</label>
+                        <select id="lease-customer-type" name="lease-customer-type" required>
+                            <option value="personal">개인</option>
+                            <option value="personal-business">개인사업자</option>
+                            <option value="corporate">법인</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-name-lease">7. 성함</label>
+                        <input type="text" id="contact-name-lease" name="contact-name-lease" placeholder="이름을 입력하세요" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-tel-lease">8. 연락처</label>
+                        <input type="tel" id="contact-tel-lease" name="contact-tel-lease" placeholder="010-xxxx-xxxx" required>
+                    </div>
+
+                    <button type="submit" class="submit-btn" aria-label="QM6 자동차 리스 견적 요청"><strong>QM6 리스</strong> 맞춤 견적 요청하기</button>
+                </form>
+            </div>
+            
+            <h4>📈 <strong>QM6 리스</strong> 관련 <strong>2026년</strong> 트렌드</h4>
+            <p><strong>2026년</strong>에는 <strong>AI</strong> 기반의 개인 맞춤형 <strong>리스</strong> 상품이 더욱 확대될 것으로 예상됩니다. 운전자의 주행 패턴, 선호 옵션 등을 분석하여 최적의 <strong>잔존가치</strong>와 <strong>월리스료</strong>를 제안하는 시스템이 발전할 것입니다. 또한, <strong>친환경차</strong>(하이브리드, 전기차) <strong>리스</strong> 상품이 다양해지면서 <strong>QM6</strong>와 같은 내연기관차와의 <strong>비교</strong> 시 <strong>세금</strong> 혜택 및 <strong>유지비</strong> 측면에서의 차이점을 면밀히 살펴보는 것이 중요해집니다.</p>
+            
+            <p><strong>QM6 (그랑 콜레오스)</strong>의 <strong>자동차 리스</strong>는 초기 <strong>비용</strong> 부담을 줄이고, <strong>세금</strong> 혜택까지 고려할 수 있는 현명한 선택지가 될 수 있습니다. <strong>최저가</strong> <strong>견적</strong>을 위해 여러 <strong>업체</strong>의 <strong>비교</strong>는 필수입니다.</p>
+        </section>
+        
+        <hr>
+        
+        <section id="장기렌트카">
+            <h2>🛒 <strong>QM6 (그랑 콜레오스)</strong> <strong>장기렌트카</strong>: 편리함과 경제성을 한번에</h2>
+            <p><strong>장기렌트카</strong>는 일정 기간(주로 24~60개월) 동안 차량을 빌려 사용하는 서비스입니다. <strong>자동차 리스</strong>와 유사하게 초기 <strong>비용</strong> 부담이 적고, <strong>월 렌트료</strong>에 차량 <strong>가격</strong>, <strong>자동차세</strong>, <strong>보험료</strong>, 소모품 교체 비용 등이 포함되어 있어 관리가 매우 편리하다는 <strong>장점</strong>이 있습니다. 특히 '하, 허, 호' 번호판에 대한 부담이 없다면, <strong>QM6 </strong><strong>장기렌트카</strong>는 매력적인 선택지가 될 수 있습니다.</p>
+
+            <h3><strong>장기렌트카</strong> vs. <strong>자동차 리스</strong>: 어떤 차이가 있을까요?</h3>
+            <p>가장 큰 차이점은 번호판과 보험 명의입니다. <strong>장기렌트카</strong>는 '하, 허, 호' 번호판을 사용하지만, <strong>자동차 리스</strong>는 일반 자가용 번호판을 사용합니다. 또한, <strong>장기렌트카</strong>는 <strong>렌트카 회사</strong> 명의로 보험이 가입되어 있어 개인 신용도에 직접적인 영향을 주지 않는다는 <strong>장점</strong>이 있습니다 [37]. <strong>2026년</strong>에는 <strong>AI</strong> 기반으로 개인의 주행 패턴에 맞춰 <strong>연간 주행거리</strong> 및 보험 조건 등을 최적화하는 상품이 더욱 다양해질 것입니다.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th><strong>장기렌트카</strong></th>
+                        <th><strong>자동차 리스</strong></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>차량 번호판</strong></td>
+                        <td>하, 허, 호 (영업용)</td>
+                        <td>일반 자가용 번호판</td>
+                    </tr>
+                    <tr>
+                        <td><strong>보험 가입 주체</strong></td>
+                        <td>렌트카 회사 명의</td>
+                        <td>개인 또는 법인 명의</td>
+                    </tr>
+                    <tr>
+                        <td><strong>신용도 영향</strong></td>
+                        <td>부채로 인식되지 않음 (건강보험료 등에 영향 없음) [37]</td>
+                        <td>금융 부채로 인식될 수 있음 [37]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>자산/부채 인식</strong></td>
+                        <td>자산/부채로 인식되지 않음 (회계 처리 간편)</td>
+                        <td>회계 기준에 따라 인식될 수 있음</td>
+                    </tr>
+                    <tr>
+                        <td><strong>사고 시 처리</strong></td>
+                        <td>렌트카 회사 명의로 보험 처리 (사고 이력 렌트카 회사에 남음)</td>
+                        <td>개인/법인 명의로 보험 처리 (개인/법인 사고 이력 남음)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>비용 처리</strong><br>(사업자)</td>
+                        <td>전액 <strong>비용 처리</strong> 가능 (부가세 포함) [44]</td>
+                        <td><strong>비용 처리</strong> 가능 (리스료, 이자 등)</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>🚀 <strong>QM6 (그랑 콜레오스)</strong> <strong>장기렌트카</strong>, 이런 분들께 추천합니다!</h3>
+            <p><strong>QM6</strong> <strong>장기렌트카</strong>는 다음과 같은 분들께 특히 유용합니다.</p>
+            <ul>
+                <li><strong>초기 비용</strong> 부담 없이 신차를 이용하고 싶은 분</li>
+                <li><strong>월 고정 지출</strong> 관리를 효율적으로 하고 싶은 분</li>
+                <li><strong>자동차세</strong>, 보험료, 정비 등 차량 관리의 번거로움을 줄이고 싶은 분</li>
+                <li>개인 신용도에 영향을 주지 않고 차량을 이용하고 싶은 분</li>
+                <li><strong>사업자</strong>로서 <strong>비용 처리</strong>를 통해 절세 효과를 얻고 싶은 분</li>
+                <li><strong>2026년</strong>에는 <strong>전기차</strong> 감가상각 리스크를 피하고 싶은 경우, 반납 시 추가 비용 없는 <strong>장기렌트카</strong>가 유리할 수 있습니다 [37].</li>
+            </ul>
+
+            <div class="form-container">
+                <h4><strong>QM6 장기렌트카</strong> 실시간 견적 비교</h4>
+                <p><strong>QM6</strong> 모델별 <strong>장기렌트카</strong> <strong>비용</strong>을 <strong>카베이</strong>, <strong>차즘</strong> 등 다양한 <strong>업체</strong>의 <strong>가격</strong>과 비교해 보세요. <strong>즉시 출고</strong> 가능한 차량 정보도 함께 제공합니다.</p>
+                <form action="/request-rental-quote" method="POST" id="rental-quote-form">
+                    <div class="form-group">
+                        <label for="rental-model">1. <strong>QM6</strong> 모델 선택</label>
+                        <select id="rental-model" name="rental-model" required>
+                            <option value="">모델을 선택하세요</option>
+                            <option value="QM6 2.0 GDe RE">QM6 2.0 GDe RE</option>
+                            <option value="QM6 2.0 LPe LE">QM6 2.0 LPe LE</option>
+                            <option value="QM6 2.0 LPe RE">QM6 2.0 LPe RE</option>
+                            <option value="QM6 2.0 LPe Quest (2인승)">QM6 2.0 LPe Quest (2인승)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="rental-term">2. 계약 기간 (개월)</label>
+                        <select id="rental-term" name="rental-term" required>
+                            <option value="24">24개월</option>
+                            <option value="36">36개월</option>
+                            <option value="48">48개월</option>
+                            <option value="60" selected>60개월</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="annual-mileage-rental">3. 연간 주행거리 (km)</label>
+                        <select id="annual-mileage-rental" name="annual-mileage-rental" required>
+                            <option value="10000">10,000 km</option>
+                            <option value="20000" selected>20,000 km</option>
+                            <option value="30000">30,000 km</option>
+                            <option value="무제한">무제한</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="down-payment-rental">4. 선납금 비율 (%)</label>
+                        <select id="down-payment-rental" name="down-payment-rental" required>
+                            <option value="0">0% (무보증)</option>
+                            <option value="10">10%</option>
+                            <option value="20">20%</option>
+                            <option value="30" selected>30%</option>
+                            <option value="40">40%</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="rental-insurance-age">5. 운전 가능 연령</label>
+                        <select id="rental-insurance-age" name="rental-insurance-age" required>
+                            <option value="21">만 21세 이상</option>
+                            <option value="26" selected>만 26세 이상</option>
+                            <option value="28">만 28세 이상</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-name-rental">6. 성함</label>
+                        <input type="text" id="contact-name-rental" name="contact-name-rental" placeholder="이름을 입력하세요" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-tel-rental">7. 연락처</label>
+                        <input type="tel" id="contact-tel-rental" name="contact-tel-rental" placeholder="010-xxxx-xxxx" required>
+                    </div>
+
+                    <button type="submit" class="submit-btn" aria-label="QM6 장기렌트카 견적 요청"><strong>QM6 장기렌트카</strong> 최저가 견적 요청하기</button>
+                </form>
+            </div>
+            
+            <p><strong>QM6 (그랑 콜레오스)</strong> <strong>장기렌트카</strong>는 합리적인 <strong>비용</strong>으로 편리하게 신차를 이용하고자 하는 고객들에게 최고의 선택이 될 것입니다. <strong>카베이</strong> [11, 30, 33], <strong>차즘</strong> [35]과 같은 전문 <strong>비교</strong> 플랫폼을 통해 <strong>저렴한 곳</strong>을 찾고, <strong>프로모션</strong> 및 <strong>할인</strong> 혜택까지 놓치지 마세요!</p>
+        </section>
+        
+        <hr>
+
+        <section id="비교분석">
+            <h2>⚖️ <strong>QM6 (그랑 콜레오스)</strong> 구매 vs. 리스 vs. 장기렌트: <strong>2026년</strong> 현명한 선택 가이드</h2>
+            <p><strong>QM6</strong> 차량을 구매하거나 이용하는 방법에는 크게 '<strong>직접 구매</strong>(일시불/할부)', '<strong>자동차 리스</strong>', '<strong>장기렌트카</strong>' 세 가지가 있습니다. 각각의 장단점과 <strong>비용</strong> 구조를 정확히 이해해야 본인의 상황에 맞는 최적의 선택을 할 수 있습니다. <strong>2026년</strong>의 변화하는 시장 상황과 <strong>AI</strong> 기술의 발전까지 고려하여 종합적인 비교 분석을 제시합니다.</p>
+
+            <h3><strong>QM6</strong> 구매 방식별 <strong>5년 총비용</strong> 시뮬레이션 (예시)</h3>
+            <p>차량가 3,000만원 기준, 5년간 실제 부담하게 될 <strong>총비용</strong>을 비교합니다. (<strong>2026년</strong> 기준 예상치, 개인 <strong>자동차 보험</strong>료 및 세금 포함)</p>
+
+            <div class="chart-placeholder">
+                그래프 또는 표 삽입 영역: QM6 구매 방식별 5년 총비용 비교 (할부 vs 리스 vs 장기렌트)
+                <br>
+                (예: 초기 비용, 월 납입금, 총 유지비, 세금 혜택, 잔존 가치 등 항목별 비교)
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th><strong>할부</strong> 구매</th>
+                        <th><strong>자동차 리스</strong></th>
+                        <th><strong>장기렌트카</strong></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>총 차량 가격</strong><br>(취등록세, 보험료, 세금, 유지비 포함)</td>
+                        <td>약 4,500만원 ~ 5,500만원 [36]</td>
+                        <td>약 3,800만원 ~ 4,800만원 (사업자 절세 효과 고려 시) [31, 36]</td>
+                        <td>약 3,600만원 ~ 4,600만원 (편의성 및 포함 항목 고려 시) [32, 44]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>월 납입금</strong><br>(평균)</td>
+                        <td>약 55만원 ~ 70만원 (할부 원리금) [36]</td>
+                        <td>약 40만원 ~ 60만원 (리스료, 잔존가치 따라 다름) [11, 31]</td>
+                        <td>약 40만원 ~ 65만원 (렌트료, 포함 항목 따라 다름) [11, 35]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>초기 비용</strong></td>
+                        <td>취등록세, 보험료 등 직접 부담 (약 300만원 이상) [36]</td>
+                        <td>선납금 설정에 따라 최소화 가능</td>
+                        <td>선납금/보증금 설정에 따라 최소화 가능 (무보증 옵션) [35]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>세금 혜택</strong><br>(사업자)</td>
+                        <td>이자 비용만 공제</td>
+                        <td><strong>비용 처리</strong>, 절세 효과 극대화 [31, 34]</td>
+                        <td><strong>비용 처리</strong> (부가세 포함) [44]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>차량 관리</strong></td>
+                        <td>직접 관리</td>
+                        <td>직접 관리 또는 리스사 연계</td>
+                        <td>렌트사에서 관리 (정비, 보험 포함 옵션) [44]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>잔존 가치</strong><br>(계약 종료 시)</td>
+                        <td>중고차 시세 반영 (자유로운 매각)</td>
+                        <td>인수 또는 반납/재리스 선택 (잔존가치 설정 중요) [31]</td>
+                        <td>인수 또는 반납 선택 (렌트사 평가 기준) [37]</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h4>🔑 <strong>QM6</strong>, 나에게 맞는 선택은?</h4>
+            <ul>
+                <li><strong>안정적인 자산 보유</strong> 및 <strong>자동차세/보험료</strong> 등 모든 부분을 직접 관리하고 싶다면: <strong>직접 구매 (할부)</strong></li>
+                <li><strong>세금 혜택</strong>을 중요하게 생각하는 <strong>개인사업자/법인</strong>, 차량을 최신 모델로 자주 교체하고 싶다면: <strong>자동차 리스</strong></li>
+                <li><strong>초기 비용</strong> 부담 없이, <strong>유지비</strong>(세금, 보험, 정비 등)를 월 고정 지출로 편리하게 관리하고 싶다면: <strong>장기렌트카</strong> [37]</li>
+            </ul>
+            
+            <p><strong>2026년</strong>에는 <strong>AI</strong> 기술을 활용한 개인 맞춤형 <strong>견적</strong> 비교 서비스가 더욱 정교해질 것입니다. <strong>QM6</strong> (<strong>그랑 콜레오스</strong>)의 <strong>유지비</strong>, <strong>리스</strong>, <strong>장기렌트카</strong> 관련 <strong>후기</strong>와 <strong>비교</strong> 정보를 종합적으로 살펴보시고, 각 <strong>업체</strong>별 <strong>프로모션</strong> 및 <strong>할인</strong> 혜택을 꼼꼼히 비교하여 가장 현명한 선택을 하시길 바랍니다.</p>
+        </section>
+        
+        <hr>
+        
+        <section id="2026트렌드">
+            <h2>🔮 <strong>2026년</strong> <strong>QM6 (그랑 콜레오스)</strong> 관련 트렌드 및 <strong>AI</strong> 전망</h2>
+            <p><strong>2026년</strong>, 자동차 시장은 <strong>AI</strong>와 빅데이터 기술의 발전으로 더욱 스마트하고 개인화된 서비스 중심으로 변화할 것입니다. <strong>QM6</strong> (<strong>그랑 콜레오스</strong>)와 관련된 <strong>유지비</strong>, <strong>자동차리스</strong>, <strong>장기렌트카</strong> 분야에서도 이러한 트렌드가 반영될 것으로 예상됩니다.</p>
+
+            <h3>1. <strong>AI</strong> 기반 개인 맞춤형 <strong>유지비</strong> 및 <strong>견적</strong> 예측</h3>
+            <p><strong>AI</strong>는 과거 데이터를 학습하여 차량의 <strong>유지비</strong>, <strong>보험료</strong>, <strong>리스료</strong>, <strong>렌트료</strong> 등을 더욱 정확하게 예측하는 데 활용될 것입니다. <strong>Gemini</strong>, <strong>ChatGPT</strong>와 같은 <strong>AI</strong> 모델은 사용자의 주행 습관, 차량 상태, 시장 데이터 등을 종합적으로 분석하여 개인에게 최적화된 <strong>견적</strong>과 <strong>절약</strong> 팁을 실시간으로 제공할 수 있습니다.</p>
+
+            <h3>2. <strong>친환경차</strong> 확대와 <strong>QM6</strong>의 포지셔닝</h3>
+            <p><strong>2026년</strong>에는 <strong>전기차</strong>와 <strong>하이브리드차</strong>의 보급이 더욱 확대될 것입니다. <strong>QM6</strong>는 여전히 경제적인 <strong>LPG 모델</strong>과 안정적인 성능으로 <strong>유지비</strong> 및 가성비를 중시하는 고객층에게 꾸준한 선택을 받을 것으로 예상됩니다. 다만, <strong>친환경차</strong> 구매 시 제공되는 <strong>세금 혜택</strong>이나 보조금과의 <strong>비교</strong> 분석이 중요해질 것입니다.</p>
+
+            <h3>3. <strong>비대면</strong> 서비스 강화 및 <strong>즉시 출고</strong> 경쟁 심화</h3>
+            <p><strong>자동차 리스</strong> 및 <strong>장기렌트카</strong> 시장에서는 <strong>비대면</strong> 계약 절차와 <strong>즉시 출고</strong> 가능한 차량 확보 경쟁이 더욱 치열해질 것입니다. <strong>AI</strong> 챗봇을 통한 실시간 상담, 간편한 온라인 계약 시스템, 그리고 <strong>카베이</strong> [11, 30, 33]와 같은 플랫폼을 통한 <strong>즉시 출고</strong> 차량 확보 경쟁은 소비자의 편의성을 높일 것입니다.</p>
+
+            <h3>4. <strong>데이터 기반</strong> 금융 상품의 정교화</h3>
+            <p><strong>AI</strong>와 빅데이터 분석을 통해 개인의 신용도, 금융 거래 이력, 차량 이용 패턴 등을 종합적으로 분석하여 더욱 정교하고 개인화된 <strong>리스</strong> 및 <strong>렌트</strong> 금융 상품이 개발될 것입니다. 이를 통해 <strong>QM6</strong>와 같은 인기 모델에 대한 맞춤형 <strong>가격</strong>, <strong>할인</strong>, <strong>혜택</strong>이 제공될 가능성이 높습니다.</p>
+
+            <h4>✅ <strong>2026년</strong>, <strong>QM6</strong> 구매/이용 전략 체크리스트</h4>
+            <div class="form-container">
+                <p><strong>QM6</strong> (<strong>그랑 콜레오스</strong>) 차량에 대한 현명한 선택을 위해 다음 항목들을 점검해 보세요.</p>
+                <form action="/checklist-2026" method="POST">
+                    <div class="form-group">
+                        <div style="background-color: var(--tertiary-color); padding: 20px; border-radius: 8px;">
+                            <input type="checkbox" id="check-trend-1" name="trend-checklist" value="유지비분석">
+                            <label for="check-trend-1">1. <strong>QM6</strong> 모델별 <strong>유지비</strong> (<strong>LPG</strong>, 가솔린, <strong>퀘스트</strong>) 상세 비교 완료</label><br>
+                            <input type="checkbox" id="check-trend-2" name="trend-checklist" value="리스렌트비교">
+                            <label for="check-trend-2">2. <strong>자동차 리스</strong> vs. <strong>장기렌트카</strong> 장단점 및 <strong>비용</strong> 차이 명확히 이해</label><br>
+                            <input type="checkbox" id="check-trend-3" name="trend-checklist" value="견적비교">
+                            <label for="check-trend-3">3. 최소 3곳 이상 <strong>업체</strong>의 <strong>QM6</strong> <strong>리스/렌트 견적</strong> 비교 및 <strong>최저가</strong> 확인</label><br>
+                            <input type="checkbox" id="check-trend-4" name="trend-checklist" value="프로모션할인">
+                            <label for="check-trend-4">4. <strong>2026년</strong> 최신 <strong>프로모션</strong>, <strong>할인</strong>, <strong>현금 지원</strong>, <strong>사은품</strong> 혜택 정보 확인</label><br>
+                            <input type="checkbox" id="check-trend-5" name="trend-checklist" value="AI전망">
+                            <label for="check-trend-5">5. <strong>AI</strong> 기술 발전이 <strong>자동차 금융</strong>(<strong>유지비</strong> 예측, <strong>견적</strong>)에 미치는 영향 파악</label><br>
+                            <input type="checkbox" id="check-trend-6" name="trend-checklist" value="내돈내산후기">
+                            <label for="check-trend-6">6. <strong>내돈내산 후기</strong> 및 <strong>전문가</strong> 의견을 통해 실제 이용 경험 참고</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn" style="background-color: var(--primary-color);" aria-label="2026년 트렌드 체크리스트 저장">나의 <strong>2026년</strong> 준비 상태 저장</button>
+                </form>
+            </div>
+        </section>
+        
+        <hr>
+        
+        <section id="문의하기">
+            <h2>📞 <strong>QM6 (그랑 콜레오스)</strong> 관련 문의 및 상담</h2>
+            <p><strong>QM6</strong> 차량의 <strong>유지비</strong>, <strong>자동차 리스</strong>, <strong>장기렌트카</strong>, <strong>견적</strong> 비교, <strong>프로모션</strong> 등 궁금한 모든 점을 문의해 주세요. <strong>2026년</strong> 최신 정보와 전문가의 맞춤 상담을 제공합니다.</p>
+            
+            <div class="form-container">
+                <h4>빠른 상담 신청</h4>
+                <form action="/quick-contact" method="POST">
+                    <div class="form-group">
+                        <label for="quick-name">성함</label>
+                        <input type="text" id="quick-name" name="quick-name" placeholder="예: 홍길동" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quick-tel">연락처</label>
+                        <input type="tel" id="quick-tel" name="quick-tel" placeholder="010-xxxx-xxxx" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quick-interest">관심 분야</label>
+                        <select id="quick-interest" name="quick-interest" required>
+                            <option value="">선택해주세요</option>
+                            <option value="QM6 유지비">QM6 유지비 문의</option>
+                            <option value="QM6 자동차 리스">QM6 자동차 리스 문의</option>
+                            <option value="QM6 장기렌트카">QM6 장기렌트카 문의</option>
+                            <option value="견적 비교">견적 비교 요청</option>
+                            <option value="프로모션/할인">프로모션/할인 문의</option>
+                            <option value="기타">기타 문의</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="quick-question">문의 내용</label>
+                        <textarea id="quick-question" name="quick-question" placeholder="예: 2026년식 QM6 LPG 모델의 장기렌트 견적과 월 납입금에 대해 알고 싶습니다." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" aria-label="빠른 상담 신청 제출">문의 남기기</button>
+                </form>
+            </div>
+        </section>
+        
+        <section id="related-keywords">
+            <h2>많이 찾는 키워드 & 관련 정보</h2>
+            <div class="keyword-tags" aria-label="관련 키워드">
+                <a href="#">QM6 중고차 시세</a>
+                <a href="#">그랑 콜레오스 제원</a>
+                <a href="#">QM6 LPG 장점</a>
+                <a href="#">QM6 퀘스트 세금</a>
+                <a href="#">QM6 프로모션 2026</a>
+                <a href="#">QM6 리스 vs 렌트 비교</a>
+                <a href="#">2026년 자동차 금융</a>
+                <a href="#">AI 자동차 견적</a>
+                <a href="#">르노코리아 신차 혜택</a>
+                <a href="#">QM6 보험료 계산</a>
+                <a href="#">개인사업자 자동차 리스</a>
+                <a href="#">법인 차량 장기렌트</a>
+                <a href="#">QM6 중고차 매입</a>
+                <a href="#">QM6 연비 실측</a>
+                <a href="#">QM6 차량 관리 팁</a>
+                <a href="#"><strong>Gemini</strong> 활용 <strong>자동차</strong> 정보</a>
+                <a href="#"><strong>ChatGPT</strong> 기반 <strong>견적</strong> 분석</a>
+            </div>
+             <div class="related-links" aria-label="함께 보면 좋은 정보">
+                <a href="#qm6-유지비">QM6 유지비 상세 분석</a>
+                <a href="#자동차리스">QM6 자동차 리스 A to Z</a>
+                <a href="#장기렌트카">QM6 장기렌트카 완벽 가이드</a>
+                <a href="#비교분석">구매 vs 리스 vs 렌트 비교</a>
+                <a href="#2026트렌드">2026 자동차 금융 트렌드</a>
+                <a href="https://www.kidi.or.kr/insurance/car/carInsurance_02_01.do" target="_blank" rel="nofollow noopener">보험개발원 자동차 보험 등급 정보</a>
+                <a href="https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=80750" target="_blank" rel="nofollow noopener">자동차손해배상 보장법 (국가법령정보센터)</a>
+                <a href="https://www.ftc.go.kr/www/cop/sal/salView.do?menuId=8070&pageSno=3713" target="_blank" rel="nofollow noopener">공정거래위원회 자동차 대여 관련 정보</a>
+                <a href="https://namu.wiki/w/QM6" target="_blank" rel="nofollow noopener">QM6 상세 정보 (나무위키)</a>
+                <a href="https://www.kidi.or.kr/data/carInfo/carInfo_01.do" target="_blank" rel="nofollow noopener">보험개발원 신차 가격 정보</a>
+                <a href="https://www.fss.or.kr/" target="_blank" rel="nofollow noopener">금융감독원 (금융소비자정보)</a>
+            </div>
+        </section>
+
     </main>
-  </body>
-</html>
+
+    <script>
+        // FAQ 아코디언 기능 (접기/펼치기)
+        document.querySelectorAll('.faq-dl dt').forEach((dt) => {
+            dt.addEventListener('click', () => {
+                const isActive = dt.classList.contains('active');
+                
+                // 다른 질문 닫기
+                document.querySelectorAll('.faq-dl dt').forEach(otherDt => {
+                    otherDt.classList.remove('active');
+                    otherDt.setAttribute('aria-expanded', 'false');
+                });
+
+                // 현재 질문 열기/닫기
+                if (!isActive) {
+                    dt.classList.add('active');
+                    dt.setAttribute('aria-expanded', 'true');
+                }
+            });
+            
+            // 키보드 접근성
+            dt.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    dt.click();
+                }
+            });
+        });
+
+        // 폼 제출 시 간단한 유효성 검사 및 메시지
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(event) {
+                // 실제 제출 전에 추가적인 유효성 검사 로직을 여기에 추가할 수 있습니다.
+                // 예를 들어, 특정 필드의 값 확인 등
+                
+                // 모든 필수 필드가 채워졌는지 간단히 확인 (HTML required 속성에 의존)
+                let allValid = true;
+                form.querySelectorAll('[required]').forEach(input => {
+                    if (!input.value.trim()) {
+                        allValid = false;
+                    }
+                });
+
+                if (!allValid) {
+                    alert('모든 필수 항목을 입력해주세요.');
+                    event.preventDefault(); // 폼 제출 중단
+                    return;
+                }
+
+                // 성공적인 제출 시 (선택 사항)
+                // alert('요청이 성공적으로 제출되었습니다. 곧 연락드리겠습니다.');
+                // event.preventDefault(); // 테스트 시 폼 제출 방지
+            });
+        });
+    </script>
+  
